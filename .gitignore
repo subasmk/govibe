@@ -1,0 +1,20 @@
+# Node / Vite
+node_modules/
+dist/
+.env
+.env.local
+
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+govibe.db
+*.sqlite3
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
