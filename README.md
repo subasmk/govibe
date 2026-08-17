@@ -1,10 +1,7 @@
 # GoVIBE 🧭
 > **"Know the place before you explore."**
 
-GoVIBE is a modern, community-powered travel web application built to solve the real problem travellers face *after* reaching a destination: understanding **what the place is like right now** based on recent visits, real-time crowd observations, safety alerts, community trust scores, and AI recommendations.
-
----
-
+GoVIBE is a modern, community-powered travel web application built to solve the real problem travellers face *after* reaching a destination:
 ## 🌟 Core Features
 
 1. **Destination Community**: Dedicated hubs for destinations (Ooty, Coorg, Munnar, Kodaikanal, Pondicherry, Chennai) featuring member stats, active traveller counts, and trust ratings.
