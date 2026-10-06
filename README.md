@@ -1,154 +1,53 @@
-# GoVIBE 🧭
-> **"Know the place before you explore."**
+<div align="center">
 
-GoVIBE is a modern, community-powered travel web application built to solve the real problem travellers face *after* reaching a destination:
-## 🌟 Core Features
+# GoVIBE
 
-1. **Destination Community**: Dedicated hubs for destinations (Ooty, Coorg, Munnar, Kodaikanal, Pondicherry, Chennai) featuring member stats, active traveller counts, and trust ratings.
-2. **Recent Experience System**: Timestamps with freshness decay indicators (*"Visited 2 days ago"* vs warning notices on 2-year old posts).
-3. **Interactive Community Map**: Color-coded markers for places:
-   - 🟢 **Green**: Highly Recommended
-   - 🟡 **Yellow**: Mixed Experiences / Fog Delays
-   - 🔴 **Red**: Recent Community Concerns / High Crowd
-   - 🔵 **Blue**: Popular Tourist Spots
-4. **Community Trust Score (e.g. 92/100)**: Transparent metric calculated from recent visits, upvotes, ratings, and local guides.
-5. **Peer Safety Reports**: Real-time road detours, parking queues, and weather hazards with traveller confirmation counts.
-6. **Trip Groups & Co-Travellers**: Join or create trip groups with shared budgets, dates, and live group discussion walls.
-7. **Ask GoVIBE AI & Itinerary Planner**: Grounded AI assistant that synthesizes community logs into explainable recommendations.
+**Know the place before you explore.**
+
+A community-powered travel app that tells you what a destination is like *right now*, from travellers who were there recently.
+
+![React](https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61dafb) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-0f172a?style=flat-square&logo=tailwindcss&logoColor=38bdf8) ![Gemini](https://img.shields.io/badge/Gemini_AI-1a73e8?style=flat-square&logo=googlegemini&logoColor=white)
+
+</div>
 
 ---
 
-## 🛠️ Technology Stack
+## The problem
 
-- **Frontend**: React 18, Vite, Tailwind CSS, React Router v6, Lucide Icons, Leaflet / React-Leaflet
-- **Backend**: Python 3.11, FastAPI, SQLAlchemy ORM, Pydantic v2, Uvicorn
-- **Database**: PostgreSQL (Production) / SQLite (Zero-config local development)
-- **AI Engine**: Google Gemini API (`gemini-1.5-flash`) with grounded fallback
-- **Storage**: AWS S3 with local multipart upload fallback
-- **Deployment**: AWS (Backend - App Runner / EC2) & Vercel (Frontend)
+Travellers find out the real situation only after they arrive: fog on the road, a crowded viewpoint, a parking queue, a scam. Reviews are old and scattered. GoVIBE collects fresh, local experience in one place.
 
----
+## Features
 
-## 📁 Project Structure
+- **Destination communities** for Ooty, Coorg, Munnar, Kodaikanal, Pondicherry and Chennai, with member counts, active travellers and trust ratings.
+- **Fresh experiences first.** Every post shows how recently it was written, and old posts get a freshness warning.
+- **Community map.** Colour-coded markers: green for highly recommended, yellow for mixed, red for recent concerns or crowds, blue for popular spots.
+- **Trust score** out of 100, worked out from recent visits, upvotes, ratings and local guides.
+- **Peer safety reports** for road detours, parking queues and weather, confirmed by other travellers.
+- **Trip groups** with shared budgets, dates and a discussion wall.
+- **Ask GoVIBE.** An AI assistant that answers from community posts and plans itineraries, with reasons.
 
-```
-d:/sih/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── common/       (Navbar, Sidebar, BottomNav, Button, Input, Modal, Rating, TrustScore, UserAvatar, Badge)
-│   │   │   ├── cards/        (DestinationCard, PlaceCard, ExperienceCard, SafetyReportCard, QuestionCard, TripGroupCard, ItineraryCard, NotificationItem)
-│   │   │   ├── map/          (CommunityMap)
-│   │   │   ├── post/         (CommentSection, PostCreatorModal)
-│   │   │   └── ai/           (AIChatModal)
-│   │   ├── context/          (AuthContext, SavedContext, NotificationContext, DestinationContext)
-│   │   ├── data/             (sampleData.js)
-│   │   ├── pages/            (20 distinct responsive pages)
-│   │   ├── layouts/          (MainLayout, AuthLayout)
-│   │   ├── services/         (api.js, aiService.js)
-│   │   ├── index.css
-│   │   └── App.jsx
-│   ├── package.json
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   ├── vercel.json
-│   └── .env.example
-├── backend/
-│   ├── app/
-│   │   ├── database/         (session.py, seed.py)
-│   │   ├── models/           (models.py - User, Destination, Place, Post, SafetyReport, Question, TripGroup)
-│   │   ├── schemas/          (schemas.py)
-│   │   ├── routes/           (destinations, places, posts, questions, safety, groups, ai, uploads)
-│   │   ├── services/         (gemini_service.py, storage_service.py)
-│   │   ├── config.py
-│   │   └── main.py
-│   ├── deploy/               (aws-apprunner.yaml, nginx.conf, govibe.service)
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   ├── requirements.txt
-│   ├── run.py
-│   └── .env.example
-└── README.md
-```
+## Built with
 
----
+| Part | Tools |
+|---|---|
+| Frontend | React 18, Vite, Tailwind CSS, React Router, Leaflet maps |
+| Backend | Python, FastAPI, SQLAlchemy, Pydantic |
+| Data | PostgreSQL in production, SQLite locally |
+| AI | Google Gemini with a grounded fallback |
+| Hosting | Vercel (frontend), AWS (backend) |
 
-## 🚀 Quick Start (Local Development)
+20 responsive pages, 8 API route groups.
 
-### 1. Run Frontend
+## Status
+
+A working full-stack build by [Subash M K](https://github.com/subasmk). Frontend and backend live in `frontend/` and `backend/`.
+
+<details>
+<summary>Run it locally</summary>
+
 ```bash
-cd frontend
-npm install
-npm run dev
+cd frontend && npm install && npm run dev
+cd backend && pip install -r requirements.txt && python run.py
 ```
-Open **http://localhost:5173** in your browser.
 
-### 2. Run Backend (FastAPI)
-```bash
-cd backend
-python -m venv venv
-
-# Windows:
-venv\Scripts\activate
-
-# Linux / Mac:
-# source venv/bin/activate
-
-pip install -r requirements.txt
-python run.py
-```
-Backend runs at **http://localhost:8000** with interactive Swagger documentation at **http://localhost:8000/docs**.
-
----
-
-## ☁️ Deployment on AWS (Option 1)
-
-### Method A: AWS App Runner (Recommended Serverless Container)
-1. Push your repository to GitHub.
-2. In AWS Console, navigate to **AWS App Runner** → Click **Create an App Runner service**.
-3. Select **Source code repository** → Connect your GitHub repo.
-4. Set **Build Settings**:
-   - Configuration file: Use `backend/deploy/aws-apprunner.yaml` (or configure via console: Python 3, Build: `pip install -r requirements.txt`, Start: `uvicorn app.main:app --host 0.0.0.0 --port 8000`).
-5. Add Environment Variables:
-   - `DATABASE_URL`: Your AWS RDS PostgreSQL connection string.
-   - `GEMINI_API_KEY`: Your Google Gemini API key.
-   - `CORS_ORIGINS`: `https://your-frontend.vercel.app`
-6. Click **Deploy**. App Runner provisions automatic HTTPS and auto-scales on traffic.
-
-### Method B: AWS EC2 (Virtual Machine)
-1. Launch an Ubuntu 22.04 LTS instance and connect via SSH.
-2. Install Python, Git, and Nginx:
-   ```bash
-   sudo apt update && sudo apt install python3-pip python3-venv nginx git -y
-   ```
-3. Clone repository and set up backend:
-   ```bash
-   git clone <repo-url>
-   cd sih/backend
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
-4. Copy systemd service:
-   ```bash
-   sudo cp deploy/govibe.service /etc/systemd/system/
-   sudo systemctl daemon-reload
-   sudo systemctl enable --now govibe
-   ```
-5. Copy Nginx configuration:
-   ```bash
-   sudo cp deploy/nginx.conf /etc/nginx/sites-available/govibe
-   sudo ln -s /etc/nginx/sites-available/govibe /etc/nginx/sites-enabled/
-   sudo nginx -t && sudo systemctl reload nginx
-   ```
-
----
-
-## 🌐 Frontend Deployment on Vercel
-
-1. Push code to GitHub.
-2. Open **Vercel** → Click **Add New Project** → Select your repository.
-3. Set **Root Directory** to `frontend`.
-4. Add Environment Variable:
-   - `VITE_API_BASE_URL`: `https://your-backend-apprunner.awsapprunner.com/api`
-5. Click **Deploy**.
+</details>
